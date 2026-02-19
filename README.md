@@ -1,81 +1,76 @@
-# Intercom
+REWARD ADDRESS: trac1u5f59uaq2pqjw9xraxdjy8tt4rgv66fhjgsh6wlcmlkce6vac8ysrwqfdq
 
-This repository is a reference implementation of the **Intercom** stack on Trac Network for an **internet of agents**.
 
-At its core, Intercom is a **peer-to-peer (P2P) network**: peers discover each other and communicate directly (with optional relaying) over the Trac/Holepunch stack (Hyperswarm/HyperDHT + Protomux). There is no central server required for sidechannel messaging.
 
-Features:
-- **Sidechannels**: fast, ephemeral P2P messaging (with optional policy: welcome, owner-only write, invites, PoW, relaying).
-- **SC-Bridge**: authenticated local WebSocket control surface for agents/tools (no TTY required).
-- **Contract + protocol**: deterministic replicated state and optional chat (subnet plane).
-- **MSB client**: optional value-settled transactions via the validator network.
 
-Additional references: https://www.moltbook.com/post/9ddd5a47-4e8d-4f01-9908-774669a11c21 and moltbook m/intercom
+# 🚀 Crypto Semi Trading Dashboard
 
-For full, agent‑oriented instructions and operational guidance, **start with `SKILL.md`**.  
-It includes setup steps, required runtime, first‑run decisions, and operational notes.
-
-## Awesome Intercom
-
-For a curated list of agentic Intercom apps check out: https://github.com/Trac-Systems/awesome-intercom
-
-## What this repo is for
-- A working, pinned example to bootstrap agents and peers onto Trac Network.
-- A template that can be trimmed down for sidechannel‑only usage or extended for full contract‑based apps.
-
-## How to use
-Use the **Pear runtime only** (never native node).  
-Follow the steps in `SKILL.md` to install dependencies, run the admin peer, and join peers correctly.
-
-## Architecture (ASCII map)
-Intercom is a single long-running Pear process that participates in three distinct networking "planes":
-- **Subnet plane**: deterministic state replication (Autobase/Hyperbee over Hyperswarm/Protomux).
-- **Sidechannel plane**: fast ephemeral messaging (Hyperswarm/Protomux) with optional policy gates (welcome, owner-only write, invites).
-- **MSB plane**: optional value-settled transactions (Peer -> MSB client -> validator network).
-
-```text
-                          Pear runtime (mandatory)
-                pear run . --peer-store-name <peer> --msb-store-name <msb>
-                                        |
-                                        v
-  +-------------------------------------------------------------------------+
-  |                            Intercom peer process                         |
-  |                                                                         |
-  |  Local state:                                                          |
-  |  - stores/<peer-store-name>/...   (peer identity, subnet state, etc)    |
-  |  - stores/<msb-store-name>/...    (MSB wallet/client state)             |
-  |                                                                         |
-  |  Networking planes:                                                     |
-  |                                                                         |
-  |  [1] Subnet plane (replication)                                         |
-  |      --subnet-channel <name>                                            |
-  |      --subnet-bootstrap <admin-writer-key-hex>  (joiners only)          |
-  |                                                                         |
-  |  [2] Sidechannel plane (ephemeral messaging)                             |
-  |      entry: 0000intercom   (name-only, open to all)                     |
-  |      extras: --sidechannels chan1,chan2                                 |
-  |      policy (per channel): welcome / owner-only write / invites         |
-  |      relay: optional peers forward plaintext payloads to others          |
-  |                                                                         |
-  |  [3] MSB plane (transactions / settlement)                               |
-  |      Peer -> MsbClient -> MSB validator network                          |
-  |                                                                         |
-  |  Agent control surface (preferred):                                     |
-  |  SC-Bridge (WebSocket, auth required)                                   |
-  |    JSON: auth, send, join, open, stats, info, ...                       |
-  +------------------------------+------------------------------+-----------+
-                                 |                              |
-                                 | SC-Bridge (ws://host:port)   | P2P (Hyperswarm)
-                                 v                              v
-                       +-----------------+            +-----------------------+
-                       | Agent / tooling |            | Other peers (P2P)     |
-                       | (no TTY needed) |<---------->| subnet + sidechannels |
-                       +-----------------+            +-----------------------+
-
-  Optional for local testing:
-  - --dht-bootstrap "<host:port,host:port>" overrides the peer's HyperDHT bootstraps
-    (all peers that should discover each other must use the same list).
-```
+Web-based Crypto Tracking & Semi-Trading Dashboard  
+Built using HTML, CSS, JavaScript & Chart.js  
+Runs directly from Termux (Android friendly)
 
 ---
-If you plan to build your own app, study the existing contract/protocol and remove example logic as needed (see `SKILL.md`).
+
+## 📊 Features
+
+- 📈 Candlestick Chart (Trading Style)
+- 🏆 Top 20 Market Cap
+- 🔄 Timeframe Selector (1D / 7D / 30D)
+- 🌗 Dark / Light Mode Toggle
+- ⭐ Save Favorite Coin (localStorage)
+- 📱 Responsive Design
+- ⚡ Lightweight & Fast
+- 🆓 Uses Free CoinGecko API
+
+---
+
+## 🛠 Built With
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Chart.js
+- CoinGecko Public API
+
+---
+
+## 📦 Installation (Termux)
+
+### 1️⃣ Install Required Packages
+
+```bash
+pkg update && pkg upgrade -y
+pkg install git nodejs python nano -y
+
+2️⃣ Clone Repository
+
+git clone https://github.com/pisceans/crypto-tracker.git
+cd crypto-tracker
+
+3️⃣ Run Local Server
+
+python -m http.server 8000
+
+Open in browser:
+
+http://localhost:8000
+http://127.0.0.1:8000
+
+🌍 API Used
+
+This project uses the free public API from:
+https://www.coingecko.com/�
+Endpoints used:
+/coins/markets
+/coins/{id}/ohlc
+No API key required.
+
+📌 Future Improvements
+📊 RSI Indicator
+📉 EMA Indicator
+📈 Volume Indicator
+🔔 Price Alerts
+💰 Portfolio Tracker
+🌍 Deploy to Vercel / Netlify
+📱 Convert to Android APK
+
