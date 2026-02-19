@@ -1,8 +1,5 @@
 REWARD ADDRESS: trac1u5f59uaq2pqjw9xraxdjy8tt4rgv66fhjgsh6wlcmlkce6vac8ysrwqfdq
 
-<div align="center">
-
-<img src="assets/img/logo.svg" width="120" />
 
 # 🚀 Crypto Semi Trading Dashboard
 
