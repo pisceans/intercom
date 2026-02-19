@@ -103,7 +103,7 @@ pkg install nodejs git -y
 ### 3️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/your-username/crypto-tracker.git
+git clone https://github.com/pisceans/crypto-tracker.git
 cd crypto-tracker
 ```
 
